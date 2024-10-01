@@ -27,7 +27,6 @@ require('dotenv').config();
         },
     };
 
-    // Initialize DisTube without SoundCloudPlugin
     client.distube = new DisTube(client, {
         emitNewSongOnly: true,
         emitAddSongWhenCreatingQueue: true,
