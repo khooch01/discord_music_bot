@@ -55,14 +55,14 @@ These instructions will help you set up and deploy the Discord Music Bot on your
 
 ## Usage
 Commands
-    !play [song name or URL]: Plays a song from Spotify, SoundCloud, or YouTube.
-    !pause: Pauses the current song.
-    !resume: Resumes the paused song.
-    !skip: Skips to the next song in the queue.
-    !stop: Stops the music and leaves the voice channel.
-    !queue: Shows the current queue of songs.
+-!play [song name or URL]: Plays a song from Spotify, SoundCloud, or YouTube.
+-!pause: Pauses the current song.
+-!resume: Resumes the paused song.
+-!skip: Skips to the next song in the queue.
+-!stop: Stops the music and leaves the voice channel.
+-!queue: Shows the current queue of songs.
 
 ## Acknowledgments
-DisTube - A powerful and flexible library for playing music in Discord.
-Discord.js - The Discord API library for Node.js.
-FFMPEG - For audio processing.
+-DisTube - A powerful and flexible library for playing music in Discord.
+-Discord.js - The Discord API library for Node.js.
+-FFMPEG - For audio processing.
