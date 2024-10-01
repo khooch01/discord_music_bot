@@ -1,10 +1,10 @@
 # Discord Music Bot 🎶
 
-A feature-rich Discord bot that can play music from various sources, including Spotify. This bot utilizes `distube`, a music handler for Discord.js, to provide seamless music playback in Discord voice channels.
+A feature-rich Discord bot that can play music from various sources, including Spotify and Youtube. This bot utilizes `distube`, a music handler for Discord.js, to provide seamless music playback in Discord voice channels.
 
 ## Features
 
-- 🎵 Play music from Spotify.
+- 🎵 Play music from Spotify and Youtube.
 - ⏸️ Pause, resume, skip, and stop music playback.
 - 📜 View the current queue of songs.
 - 🔊 Simple, easy-to-use commands for users.
@@ -55,7 +55,7 @@ These instructions will help you set up and deploy the Discord Music Bot on your
 
 ## Usage
 Commands
-- !play [song name or URL]: Plays a song from Spotify.
+- !play [song name or URL]: Plays a song from Spotify or Youtube.
 - !pause: Pauses the current song.
 - !resume: Resumes the paused song.
 - !skip: Skips to the next song in the queue.
