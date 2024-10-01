@@ -4,7 +4,7 @@ A feature-rich Discord bot that can play music from various sources, including S
 
 ## Features
 
-- 🎵 Play music from Spotify, SoundCloud, and YouTube.
+- 🎵 Play music from Spotify.
 - ⏸️ Pause, resume, skip, and stop music playback.
 - 📜 View the current queue of songs.
 - 🔊 Simple, easy-to-use commands for users.
