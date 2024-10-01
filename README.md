@@ -1,6 +1,6 @@
 # Discord Music Bot 🎶
 
-A feature-rich Discord bot that can play music from various sources, including Spotify and SoundCloud. This bot utilizes `distube`, a music handler for Discord.js, to provide seamless music playback in Discord voice channels.
+A feature-rich Discord bot that can play music from various sources, including Spotify. This bot utilizes `distube`, a music handler for Discord.js, to provide seamless music playback in Discord voice channels.
 
 ## Features
 
