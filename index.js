@@ -45,6 +45,21 @@ const sodium = require('libsodium-wrappers');
     client.on('messageCreate', async (message) => {
         if (message.author.bot) return;
 
+        if (message.content.startsWith('!help')) {
+            const helpMessage = `
+        **Music Commands:**
+        - \`!play <song name or URL>\`: Plays the provided song.
+        - \`!stop\`: Stops the music.
+        - \`!pause\`: Pauses the current song.
+        - \`!resume\`: Resumes the paused song.
+        - \`!skip\`: Skips the current song.
+        - \`!queue\`: Shows the current queue.
+        - \`!help\`: Displays this help message.
+            `;
+            message.channel.send(helpMessage);
+            return;
+        }
+        
         if (message.content.startsWith('!play ')) {
             const args = message.content.split(' ');
             const query = args.slice(1).join(' ');
