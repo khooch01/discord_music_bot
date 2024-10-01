@@ -66,3 +66,6 @@ Commands
 - DisTube - A powerful and flexible library for playing music in Discord.
 - Discord.js - The Discord API library for Node.js.
 - FFMPEG - For audio processing.
+
+Feel free to try it out!
+https://discord.com/oauth2/authorize?client_id=1290208243762724874
