@@ -1,8 +1,9 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { DisTube } = require('distube');
 const { SpotifyPlugin } = require('@distube/spotify');
-const { SoundCloudPlugin } = require('@distube/soundcloud');
+const { YouTubePlugin } = require('@distube/youtube');
 const sodium = require('libsodium-wrappers');
+require('dotenv').config();
 
 (async () => {
     await sodium.ready;
@@ -26,21 +27,19 @@ const sodium = require('libsodium-wrappers');
         },
     };
 
-
+    // Initialize DisTube without SoundCloudPlugin
     client.distube = new DisTube(client, {
         emitNewSongOnly: true,
         emitAddSongWhenCreatingQueue: true,
-        plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
+        plugins: [new SpotifyPlugin(), new YouTubePlugin()],
         ffmpeg: {
-            executable: 'C:\\ffmpeg\\bin\\ffmpeg.exe', // If ffmpeg is not in your PATH, use the full path
+            executable: 'C:\\ffmpeg\\bin\\ffmpeg.exe',
         },
     });
-
 
     client.on('ready', () => {
         console.log(`Logged in as ${client.user.tag}!`);
     });
-
 
     client.on('messageCreate', async (message) => {
         if (message.author.bot) return;
@@ -48,7 +47,7 @@ const sodium = require('libsodium-wrappers');
         if (message.content.startsWith('!help')) {
             const helpMessage = `
         **Music Commands:**
-        - \`!play <song name or URL>\`: Plays the provided song.
+        - \`!play <song name or URL>\`: Plays the provided song or YouTube URL.
         - \`!stop\`: Stops the music.
         - \`!pause\`: Pauses the current song.
         - \`!resume\`: Resumes the paused song.
@@ -59,7 +58,7 @@ const sodium = require('libsodium-wrappers');
             message.channel.send(helpMessage);
             return;
         }
-        
+
         if (message.content.startsWith('!play ')) {
             const args = message.content.split(' ');
             const query = args.slice(1).join(' ');
@@ -74,10 +73,20 @@ const sodium = require('libsodium-wrappers');
             }
 
             try {
-                await client.distube.play(voiceChannel, query, {
-                    textChannel: message.channel,
-                    member: message.member,
-                });
+                // Check if the query is a valid YouTube URL or not.
+                if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/.test(query)) {
+                    // If it's a URL, play directly
+                    await client.distube.play(voiceChannel, query, {
+                        textChannel: message.channel,
+                        member: message.member,
+                    });
+                } else {
+                    // Otherwise, search for the song
+                    await client.distube.play(voiceChannel, query, {
+                        textChannel: message.channel,
+                        member: message.member,
+                    });
+                }
             } catch (error) {
                 console.error('Error playing music:', error);
                 message.reply('There was an error trying to play the requested song.');
@@ -85,6 +94,7 @@ const sodium = require('libsodium-wrappers');
             return; // Prevent fall-through to other commands
         }
 
+        // Stop command
         if (message.content.startsWith('!stop')) {
             const voiceChannel = message.member.voice.channel;
             if (!voiceChannel) {
@@ -99,6 +109,7 @@ const sodium = require('libsodium-wrappers');
             return;
         }
 
+        // Pause command
         if (message.content.startsWith('!pause')) {
             const voiceChannel = message.member.voice.channel;
             if (!voiceChannel) {
@@ -113,6 +124,7 @@ const sodium = require('libsodium-wrappers');
             return;
         }
 
+        // Resume command
         if (message.content.startsWith('!resume')) {
             const voiceChannel = message.member.voice.channel;
             if (!voiceChannel) {
@@ -127,6 +139,7 @@ const sodium = require('libsodium-wrappers');
             return;
         }
 
+        // Skip command
         if (message.content.startsWith('!skip')) {
             const voiceChannel = message.member.voice.channel;
             if (!voiceChannel) {
@@ -137,6 +150,7 @@ const sodium = require('libsodium-wrappers');
             return;
         }
 
+        // Queue command
         if (message.content.startsWith('!queue')) {
             const queue = client.distube.getQueue(message);
             if (!queue) {
