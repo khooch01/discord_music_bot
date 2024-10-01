@@ -55,7 +55,7 @@ These instructions will help you set up and deploy the Discord Music Bot on your
 
 ## Usage
 Commands
-- !play [song name or URL]: Plays a song from Spotify, SoundCloud, or YouTube.
+- !play [song name or URL]: Plays a song from Spotify.
 - !pause: Pauses the current song.
 - !resume: Resumes the paused song.
 - !skip: Skips to the next song in the queue.
